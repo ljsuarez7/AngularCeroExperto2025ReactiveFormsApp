@@ -35,9 +35,11 @@
             placeholder="Precio del producto"
             formControlName="price"
           >
-          <span class="form-text text-danger">
-            El precio debe de ser 0 o mayor
-          </span>
+          @if (isValidField('price')) {
+            <span class="form-text text-danger">
+              {{getFieldError('price')}}
+            </span>
+          }
         </div>
       </div>
 
@@ -50,9 +52,11 @@
             placeholder="Existencias del producto"
             formControlName="inStorage"
           >
-          <span class="form-text text-danger">
-            Las existencias deben de ser 0 o mayor
-          </span>
+          @if (isValidField('inStorage')) {
+            <span class="form-text text-danger">
+              {{getFieldError('inStorage')}}
+            </span>
+          }
         </div>
       </div>
 
