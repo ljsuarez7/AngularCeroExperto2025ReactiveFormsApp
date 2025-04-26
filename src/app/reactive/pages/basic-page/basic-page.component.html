@@ -17,9 +17,9 @@
           >
 
           <!-- TODO: CREAR UN COMPONENTE PERSONALIZADO PARA LOS ERRORES PARA NO REPETIR ESTO Y EL IF USAR EL MISMO METODO QUE PARA DENTRO -->
-          @if (isValidField('name')) {
+          @if (formUtils.isValidField(myForm, 'name')) {
             <span class="form-text text-danger">
-              {{getFieldError('name')}}
+              {{formUtils.getFieldError(myForm, 'name')}}
             </span>
           }
 
@@ -35,9 +35,9 @@
             placeholder="Precio del producto"
             formControlName="price"
           >
-          @if (isValidField('price')) {
+          @if (formUtils.isValidField(myForm, 'price')) {
             <span class="form-text text-danger">
-              {{getFieldError('price')}}
+              {{formUtils.getFieldError(myForm, 'price')}}
             </span>
           }
         </div>
@@ -52,9 +52,9 @@
             placeholder="Existencias del producto"
             formControlName="inStorage"
           >
-          @if (isValidField('inStorage')) {
+          @if (formUtils.isValidField(myForm, 'inStorage')) {
             <span class="form-text text-danger">
-              {{getFieldError('inStorage')}}
+              {{formUtils.getFieldError(myForm, 'inStorage')}}
             </span>
           }
         </div>
