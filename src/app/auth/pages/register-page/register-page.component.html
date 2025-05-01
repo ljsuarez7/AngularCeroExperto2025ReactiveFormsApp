@@ -23,8 +23,8 @@
 
           @if (formUtils.isValidField(myForm, 'name')) {
             <span class="form-text text-danger">
-              <!-- Debe de ser en formato de nombre y apellido -->
-              {{formUtils.getFieldError(myForm, 'name')}}
+              Debe de ser en formato de nombre y apellido
+              <!-- {{formUtils.getFieldError(myForm, 'name')}} -->
             </span>
           }
 
@@ -134,6 +134,13 @@
       <div class="row">
 
         <div class="col">
+
+          <!-- Este if deberia ser más especifico y el mensaje tambien por si hay más errores de formulario, pero de mometno para la prueba vale -->
+          @if (myForm.errors && myForm.touched) {
+            <span class="text-danger">
+              Las contraseñas no son iguales
+            </span>
+          }
 
           <button
             class="btn btn-primary float-end"
