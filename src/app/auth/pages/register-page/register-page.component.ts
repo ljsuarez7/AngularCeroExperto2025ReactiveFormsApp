@@ -21,7 +21,15 @@ export class RegisterPageComponent {
       [Validators.required, Validators.pattern(this.formUtils.emailPattern)],
       [this.formUtils.checkingServerResponse]
     ],
-    username: ['', [Validators.required, Validators.minLength(6), Validators.pattern(this.formUtils.notOnlySpacesPattern)]],
+    username: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern(this.formUtils.notOnlySpacesPattern),
+        this.formUtils.notStrider
+      ]
+    ],
     password: ['', [Validators.required, Validators.minLength(6)]],
     password2: ['', [Validators.required]],
   },

@@ -43,6 +43,9 @@ export class FormUtils {
           }
           return 'Error de patrón contra expresión regular';
 
+        case 'notStrider':
+          return `Ese usuario no puede ser utilizado`;
+
         default:
           return `Error de validación no controlado: ${key}`;
 
@@ -117,6 +120,12 @@ export class FormUtils {
     }
 
     return null;
+
+  }
+
+  static notStrider(control: AbstractControl): ValidationErrors | null {
+
+    return control.value === 'strider' ? { notStrider : true } : null;
 
   }
 
