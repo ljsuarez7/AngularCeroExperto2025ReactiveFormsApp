@@ -1,6 +1,15 @@
 import { AbstractControl, FormArray, FormGroup, ValidationErrors } from '@angular/forms';
 //TODO: Esto podria ser un servicio que tengamos que inyectar en los components
 
+//Simulamos una llamada a un backend que tarde x segundos, para el ejercicio
+async function sleep(){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(true)
+    }, 2500);
+  })
+}
+
 export class FormUtils {
 
   static namePattern = '([a-zA-Z]+) ([a-zA-Z]+)';
@@ -24,6 +33,9 @@ export class FormUtils {
 
         case 'email':
           return `El valor ingresado no es un correo electrónico`;
+
+        case 'emailTaken':
+          return `Ese correo electronico ya está siendo usado`;
 
         case 'pattern':
           if(errors['pattern'].requiredPattern === FormUtils.emailPattern){
@@ -87,6 +99,24 @@ export class FormUtils {
       return field1Value === field2Value ? null : {passwordsNotEqual: true}; //En vez de passwordNotEqual dberia ser fieldsNot... para que siga siendo generico, lo hago así por seguir al profesor
 
     }
+
+  }
+
+  static async checkingServerResponse(control: AbstractControl): Promise<ValidationErrors | null> {
+
+    console.log('Validando contra servidor');
+
+    await sleep(); //Simulamos que algun proceso tarda x segundos
+
+    const formValue = control.value;
+
+    if(formValue === 'hola@mundo.com'){
+      return {
+        emailTaken: true
+      };
+    }
+
+    return null;
 
   }
 
